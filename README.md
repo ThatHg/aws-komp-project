@@ -1,3 +1,3 @@
 # aws-komp-project
 
-kompetens projekt ci/cd kedja med aws, docker, gitlab och statisk websida 
+Kompetensutvecklingsprojekt - skapa ci/cd kedja med aws, docker, gitlab och statisk websida 
