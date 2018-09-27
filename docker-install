@@ -1,0 +1,26 @@
+#!/bin/bash
+DOCKER_PATH=$(command -v docker)
+
+echo "" && echo "---------------------------"
+echo "INIT DOCKER AND REGISTRY"
+echo "---------------------------"
+
+# Install docker if not exist
+if [[ ! $DOCKER_PATH ]]; then
+    sudo apt update -y && \
+    sudo apt install -y docker.io && \
+    sudo service docker start
+fi
+
+# Give current user docker access by default
+echo "Adding ${USER} to group docker"
+sudo usermod -a -G docker "${USER}"
+
+# Info
+echo "" && echo "---------IMAGES------------"
+docker image ls -a
+echo "" && echo "---------CONTAINERS--------"
+docker container ls -a
+echo "" && echo "---------INFO--------------"
+docker info
+echo "---------------------------"
