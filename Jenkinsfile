@@ -5,7 +5,7 @@ pipeline {
         }
     }
     environment {
-        DOCKER_API_TOKEN=cridentials('thathg-docker-cloud')
+        DOCKER_API_TOKEN = credentials('thathg-docker-cloud')
     }
     stages {
         stage('pre') {
@@ -21,7 +21,8 @@ pipeline {
         stage('build') {
             steps {
                 echo 'building...'
-                echo $(ls)
+                sh 'ls'
+                sh 'find ./ -name docker*'
             }
         }
         stage('deploy') {
