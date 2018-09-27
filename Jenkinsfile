@@ -5,7 +5,7 @@ pipeline {
         }
     }
     environment {
-        DOCKER_API_TOKEN: cridentials('thathg-docker-cloud')
+        DOCKER_API_TOKEN=cridentials('thathg-docker-cloud')
     }
     stages {
         stage('pre') {
