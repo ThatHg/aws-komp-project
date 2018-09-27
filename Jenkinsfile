@@ -4,6 +4,12 @@ pipeline {
         DOCKER_API_TOKEN = credentials('thathg-docker-cloud')
     }
     stages {
+        stage('waiting for docker') {
+            steps {
+                echo '========== WAITING FOR DOCKER =========='
+                sh './docker-wait'
+            }
+        }
         stage('test') {
             steps {
                 echo '========== TESTING =========='

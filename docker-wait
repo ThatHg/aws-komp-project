@@ -1,0 +1,18 @@
+#!/bin/sh
+SECONDS=300
+COUNTER=1
+
+echo ""; echo "Check if docker is ready yet."; echo ""
+while [ ! "$(command -v docker)" ] && [ "${COUNTER}" -le "${SECONDS}" ]; do
+    echo "${COUNTER}"
+    COUNTER=$((COUNTER+1))
+    sleep 1
+done
+
+if [ "${COUNTER}" -gt "${SECONDS}" ]; then
+    echo ""; echo "Docker not ready!"; echo ""
+    exit 1
+else
+    echo ""; echo "Docker is ready!"; echo ""
+    exit 0
+fi
