@@ -1,33 +1,24 @@
 pipeline {
-    agent {
-        docker {
-            image 'alpine'
-        }
-    }
+    agent any
     environment {
         DOCKER_API_TOKEN = credentials('thathg-docker-cloud')
     }
     stages {
-        stage('pre') {
-            steps {
-                echo 'fetching...'
-            }
-        }
         stage('test') {
             steps {
-                echo 'testing'
+                echo '========== TESTING =========='
             }
         }
         stage('build') {
             steps {
-                echo 'building...'
-                sh 'ls'
-                sh 'find ./ -name docker*'
+                echo '========== BUILDING =========='
+                sh './docker-build'
             }
         }
         stage('deploy') {
             steps {
-                echo 'deploying...'
+                echo '========== DEPLOYING =========='
+                sh './docker-deploy thathg ${DOCKER_API_TOKEN}'
             }
         }
     }

@@ -1,0 +1,22 @@
+#!/bin/sh
+IMAGE_NAME="static-website"
+
+REGISTRY=$1
+API_TOKEN=$2
+
+if [ -z "${REGISTRY}" ] || [ -z "${API_TOKEN}" ]; then
+    echo "Usage: docker-deploy <registry> <api_token>"
+    exit
+fi
+
+echo "Logging in to docker 2554064b-a3d4-4a58-922f-996c3829278f"
+docker login -u thathg --password "${API_TOKEN}"
+
+echo "Tagging docker image ${IMAGE_NAME} as ${REGISTRY}/${IMAGE_NAME}"
+docker tag "${IMAGE_NAME}" "${REGISTRY}/${IMAGE_NAME}"
+
+echo "Pushing docker image to ${REGISTRY}/${IMAGE_NAME}"
+docker push "${REGISTRY}/${IMAGE_NAME}"
+
+echo "Logout"
+docker logout
