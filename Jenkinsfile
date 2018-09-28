@@ -1,10 +1,6 @@
 pipeline {
     agent {
-        docker {
-            image 'alpine'
-            label 'komp-general'
-            args '-v /tmp:/tmp'
-        }
+        label 'komp-general'
     }
     environment {
         DOCKER_API_TOKEN = credentials('thathg-docker-cloud')
