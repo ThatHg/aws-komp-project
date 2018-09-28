@@ -1,5 +1,6 @@
 #!/bin/bash
 DOCKER_PATH=$(command -v docker)
+DOCKER_USER="ubuntu"
 
 echo "" && echo "---------------------------"
 echo "INIT DOCKER AND REGISTRY"
@@ -14,7 +15,7 @@ fi
 
 # Give current user docker access by default
 echo "Adding ${USER} to group docker"
-sudo usermod -a -G docker "${USER}"
+sudo usermod -a -G docker "${DOCKER_USER}"
 
 # Info
 echo "" && echo "---------IMAGES------------"
