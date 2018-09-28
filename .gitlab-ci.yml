@@ -1,0 +1,10 @@
+variables:
+    DOCKER_API_TOKEN: "${ENV[KEY1]}-${ENV[KEY2]}-${ENV[KEY3]}-${ENV[KEY4]}-${ENV[KEY5]}"
+
+build_image:
+    script:
+        - ./docker-build
+
+deploy_image:
+    script:
+        - ./docker-deploy thathg ${DOCKER_API_TOKEN}

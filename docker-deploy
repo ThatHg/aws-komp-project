@@ -20,3 +20,6 @@ docker push "${REGISTRY}/${IMAGE_NAME}"
 
 echo "Logout"
 docker logout
+
+echo "===== CLEAN UP ====="
+docker image rm -f "${REGISTRY}/${IMAGE_NAME}"

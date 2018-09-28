@@ -10,9 +10,13 @@ pipeline {
                 sh './docker-wait'
             }
         }
-        stage('test') {
+        stage('pre') {
             steps {
-                echo '========== TESTING =========='
+                echo '========== PRE INFO =========='
+                echo '== Docker Images =='
+                sh 'docker image ls -a'
+                echo '== Docker Containers =='
+                sh 'docker container ls -a'
             }
         }
         stage('build') {
@@ -25,6 +29,15 @@ pipeline {
             steps {
                 echo '========== DEPLOYING =========='
                 sh './docker-deploy thathg ${DOCKER_API_TOKEN}'
+            }
+        }
+        stage('post') {
+            steps {
+                echo '========== POST INFO =========='
+                echo '== Docker Images =='
+                sh 'docker image ls -a'
+                echo '== Docker Containers =='
+                sh 'docker container ls -a'
             }
         }
     }

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+#ssh into deployment server
+#pull docker image and docker run
